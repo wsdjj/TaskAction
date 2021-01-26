@@ -36,9 +36,9 @@ hostname = api.yikeapp.com,
 const $ = new Env('一刻视频')
 let notice = ''
 //let CookieVal = $.getdata('yk_ck')
-let CookieVal = ' {"User-Agent":"yi ke shi pin/3.1.9 (iPhone; iOS 13.4.1; Scale/2.00)","Host":"api.yikeapp.com","deviceType":"ios","channelID":"IOS","platformId":"IOS","latitude":"30.496954","Content-Length":"21","networkOperator":"IOS","Connection":"keep-alive","timestamp":"1611486744417","longitude":"120.681350","appVersionCode":"16","termModel":"iPhone12,1","appVersionName":"","Accept-Language":"zh-Hans-CN;q=1","termSysVersion":"13.400000","network":"IOS","Accept":"*/*","Content-Type":"application/json","x-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiZjVkZmRjZWQtNTAzMi00MWRjLThjODYtZmNiMTQ2ZTRmNWIyIiwiSUQiOjYwMDEwLCJQaG9uZSI6IjEzNTg2Mzg3NjY5IiwiTmlja05hbWUiOiIiLCJBdXRob3JpdHlJZCI6IiIsImV4cCI6MTY0MjU2MDU5MiwiaXNzIjoicW1QbHVzIiwibmJmIjoxNjExMDIzNTkyfQ.B2l4_JfGKeRFXGSdJAXpofwsax8hihYEkHEA1xxR05o","appPackageName":"com.yikeapp.momentIos","termId":"2C00D489-382A-4922-8D56-A3006C77560F","Accept-Encoding":"gzip, deflate, br"}')
+let CookieVal = '{"User-Agent":"yi ke shi pin/3.1.9 (iPhone; iOS 13.4.1; Scale/2.00)","Host":"api.yikeapp.com","deviceType":"ios","channelID":"IOS","platformId":"IOS","latitude":"30.496954","Content-Length":"21","networkOperator":"IOS","Connection":"keep-alive","timestamp":"1611486744417","longitude":"120.681350","appVersionCode":"16","termModel":"iPhone12,1","appVersionName":"","Accept-Language":"zh-Hans-CN;q=1","termSysVersion":"13.400000","network":"IOS","Accept":"*/*","Content-Type":"application/json","x-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiZjVkZmRjZWQtNTAzMi00MWRjLThjODYtZmNiMTQ2ZTRmNWIyIiwiSUQiOjYwMDEwLCJQaG9uZSI6IjEzNTg2Mzg3NjY5IiwiTmlja05hbWUiOiIiLCJBdXRob3JpdHlJZCI6IiIsImV4cCI6MTY0MjU2MDU5MiwiaXNzIjoicW1QbHVzIiwibmJmIjoxNjExMDIzNTkyfQ.B2l4_JfGKeRFXGSdJAXpofwsax8hihYEkHEA1xxR05o","appPackageName":"com.yikeapp.momentIos","termId":"2C00D489-382A-4922-8D56-A3006C77560F","Accept-Encoding":"gzip, deflate, br"}'
 //let bodyVal = $.getdata('yk_body')
-let bodyVal = ' {"customer_id":60010}')
+let bodyVal = '{"customer_id":60010}'
 
 
 now = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);  
