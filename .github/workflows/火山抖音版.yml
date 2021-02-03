@@ -1,34 +1,29 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 百度极速版
+name: 抖音火山版
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/20 * * * *'
   watch:
     types: started
   repository_dispatch:
-    types: baidu_speed
+    types: started
 jobs:
   build:
-    env:
-      BAIDU_COOKIE: ${{ secrets.BAIDU_COOKIE }}
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        if: env.BAIDU_COOKIE
         run: |
-          git clone https://github.com/1217079729/TaskAction.git ~/TaskAction
+          git clone https://github.com/ZhiYi-N/Private-Script.git ~/Private-Script
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
-        if: env.BAIDU_COOKIE
         with:
           node-version: ${{ matrix.node-version }}
       - name: Cache node_modules
-        if: env.BAIDU_COOKIE
         uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
         env:
           cache-name: cache-node-modules
@@ -36,18 +31,20 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
-        if: env.BAIDU_COOKIE
         run: |
-          cd ~/TaskAction
+          cd ~/Private-Script
           git checkout master
           npm install
-      - name: '运行 【百度极速版】'
-        if: env.BAIDU_COOKIE
+      - name: '运行 【抖音火山版】'
         run: |
-          cd ~/TaskAction/workflow
-          node baidu_speed.js
+          cd ~/Private-Script/Scripts
+          node huoshan.js
         env:
           TZ: Asia/shanghai
-          BAIDU_COOKIE: ${{ secrets.BAIDU_COOKIE }}
-          BAIDU_CASH: ${{ secrets.BAIDU_CASH }}
+          HSURL: ${{ secrets.HSURL }}
+          HSHEADER: ${{ secrets.HSHEADER }}
+          HSBODY: ${{ secrets.HSBODY }}
+          PLAYURL: ${{ secrets.PLAYURL }}
+          PLAYHEADER: ${{ secrets.PLAYHEADER }}
+          PLAYBODY: ${{ secrets.PLAYBODY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}

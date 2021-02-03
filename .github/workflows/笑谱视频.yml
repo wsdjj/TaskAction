@@ -1,34 +1,29 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 工业品爱消除
+name: 笑谱视频
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/20 0-15 * * *' # UTC时间 倒推8个小时，北京时间8-23点执行
   watch:
     types: started
   repository_dispatch:
-    types: jd_job
+    types: started
 jobs:
   build:
-    env:
-      JD_COOKIE: ${{ secrets.JD_COOKIE }}
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        if: env.JD_COOKIE
         run: |
-          git clone https://github.com/1217079729/TaskAction.git ~/TaskAction
+          git clone https://github.com/ziye12/JavaScript.git ~/JavaScript
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
-        if: env.JD_COOKIE
         with:
           node-version: ${{ matrix.node-version }}
       - name: Cache node_modules
-        if: env.JD_COOKIE
         uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
         env:
           cache-name: cache-node-modules
@@ -36,27 +31,19 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
-        if: env.JD_COOKIE
         run: |
-          cd ~/TaskAction
-          git checkout jd_code
+          cd ~/JavaScript
+          git checkout main
           npm install
-          
-
-      - name: '运行 【京东炸年兽领爆竹🧨】'
+      - name: '运行 【笑谱视频】'
         run: |
-          cd ~/TaskAction
-          node jd_nianCollect.js
+          cd ~/JavaScript/Task
+          node iboxpay.js
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          TZ: Asia/shanghai
+          XP_CASH: ${{ secrets.XP_CASH }}
+          XP_live: ${{ secrets.XP_live }}
+          XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
+          COOKIES_SPLIT: ${{ secrets.COOKIES_SPLIT }}
+          XP_refreshTOKEN: ${{ secrets.XP_refreshTOKEN }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
-
-
-      - name: '运行 【工业品爱消除】'
-        run: |
-          cd ~/TaskAction
-          node jd_gyec.js
-        env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-

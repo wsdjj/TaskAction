@@ -1,34 +1,34 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 百度极速版
+name: 炸年兽领爆竹
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/30 * * * *'
   watch:
     types: started
   repository_dispatch:
-    types: baidu_speed
+    types: jd_job
 jobs:
   build:
     env:
-      BAIDU_COOKIE: ${{ secrets.BAIDU_COOKIE }}
+      JD_COOKIE: ${{ secrets.JD_COOKIE }}
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        if: env.BAIDU_COOKIE
+        if: env.JD_COOKIE
         run: |
           git clone https://github.com/1217079729/TaskAction.git ~/TaskAction
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
-        if: env.BAIDU_COOKIE
+        if: env.JD_COOKIE
         with:
           node-version: ${{ matrix.node-version }}
       - name: Cache node_modules
-        if: env.BAIDU_COOKIE
+        if: env.JD_COOKIE
         uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
         env:
           cache-name: cache-node-modules
@@ -36,18 +36,25 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
-        if: env.BAIDU_COOKIE
+        if: env.JD_COOKIE
         run: |
           cd ~/TaskAction
-          git checkout master
+          git checkout jd_code
           npm install
-      - name: '运行 【百度极速版】'
-        if: env.BAIDU_COOKIE
+          
+
+      - name: '运行 【京东炸年兽领爆竹🧨】'
         run: |
-          cd ~/TaskAction/workflow
-          node baidu_speed.js
+          cd ~/TaskAction
+          node jd_nianCollect.js
         env:
-          TZ: Asia/shanghai
-          BAIDU_COOKIE: ${{ secrets.BAIDU_COOKIE }}
-          BAIDU_CASH: ${{ secrets.BAIDU_CASH }}
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+
+      - name: '运行 【京东神仙书院答题】'
+        run: |
+          cd ~/TaskAction
+          node jd_immortal_answer.js
+        env:
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
