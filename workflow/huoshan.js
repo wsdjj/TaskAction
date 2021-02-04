@@ -26,12 +26,18 @@ const notify = $.isNode() ?require('./sendNotify') : '';
 let status;
 status = (status = ($.getval("hsstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
 const hsheaderArr = [],hsbodyArr = [],hsurlArr = [],playurlArr = [],playheaderArr = [],playbodyArr = []
-let playurl = $.getdata('playurl')
-let playheader = $.getdata('playheader')
-let playbody = $.getdata('playbody')
-let hsurl = $.getdata('hsurl')
-let hsheader = $.getdata('hsheader')
-let hsbody = $.getdata('hsbody')
+//let playurl = $.getdata('playurl')
+let playurl = 'https://api3-normal-c-lf.huoshan.com/hotsoon/item/reaction/_play/?js_sdk_version=1.93.0.1&client_request_id=bcbf355276179a66442db97e8c731d2f&minor_control_status=0&ac=WIFI&tab_mode=3&'
+//let playheader = $.getdata('playheader')
+let playheader = '{"Tt-Tnc-Etag":"050c4141-e9bd0e96-84660ace-76698c0b","X-Gorgon":"840420c210003f20646d7d5ec03c9c9c9b1b790c58564bdbfe69","User-Agent":"Ã§ÂÂ«Ã¥Â±Â±Ã¥Â°ÂÃ¨Â§ÂÃÂ¢Â 10.8.5 rv:10080507 (iPhone; iOS 14.2; zh_CN) Cronet","X-SS-STUB":"0340480ABA0CAE5E049997A7D5494149","Host":"api3-normal-c-lf.huoshan.com","Cookie":"odin_tt=a4b8e3192f96655b7c3dd2b9f8aa35cc9484aafe5ab152e3a601215e58c50153e48f16123db7e20b959a950ce5075b2711c6e93bf7077cbdfac43fb7500f8ee5","x-Tt-Token":"00e1bb60ed6c0cbda3bbabdbb958ed0b3d05219a902b19362f971e3b91b9f00409a9b5fc657be352326ddbb0115f242dd11bee5602d2cc8e55fd762de18a05605dc63806a157f3142a11882bf3b19dbf36f2130a26d7db13ab72ee28ea56cd0648d08-1.0.1","x-tt-trace-id":"00-670ca9920a10336ea89cf60999ad0458-670ca9920a10336e-01","X-SS-DP":"1112","passport-sdk-version":"5.12.1","X-Khronos":"1612341618","Tt-Config-Version":"050c4141-e9bd0e96-84660ace-76698c0b","Content-Length":"155","Connection":"keep-alive","X-Tyhon":"v0g+ZPZxSn7wYShZ9QI3QPoFPRmJUxJI7EwyrGM=","sdk-version":"2","Tt-Tnc-Canary":"1","x-common-params-v2":"settings_version=24&version_code=10.8.5&app_name=live_stream&vid=4D5A7E34-35BB-43C3-93E8-C52056142403&device_id=69582366876&channel=App%20Store&new_nav=0&multi_login=1&aid=1112&hs_location_permission=0&screen_width=750&live_sdk_version=10.8.5&os_api=18&update_version_code=10080507&mccmnc=&os_version=14.2&ws_status=CLOSED&jssdk_version=1.93.0.1&client_version_code=100805&device_platform=iphone&iid=3747555023001725&device_type=iPhone8,1&idfa=46B3172D-55B8-48BC-8927-8A7861761B91&is_vcd=1","Content-Type":"application/x-www-form-urlencoded","Accept-Encoding":"gzip, deflate"}'
+//let playbody = $.getdata('playbody')
+let playbody = 'action_backtrace=recommend&channel_id=10020&is_city_near_by=0&is_dy_domain=0&is_follower=0&is_following=0&item_id=6924601261018991886&source=recommend_draw'
+//let hsurl = $.getdata('hsurl')
+let hsurl = 'settings_version=24&version_code=10.8.5&js_sdk_version=1.93.0.1&app_name=live_stream&vid=4D5A7E34-35BB-43C3-93E8-C52056142403&device_id=69582366876&new_nav=0&channel=App%20Store&multi_login=1&aid=1112&hs_location_permission=0&screen_width=750&client_request_id=a89123bc7b39bf433da0d99265c31f24&update_version_code=10080507&live_sdk_version=10.8.5&minor_control_status=0&os_api=18&ws_status=CONNECTED&ac=WIFI&mccmnc=&os_version=14.2&jssdk_version=1.93.0.1&tab_mode=3&client_version_code=100805&device_platform=iphone&iid=3747555023001725&device_type=iPhone8,1&is_vcd=1&idfa=46B3172D-55B8-48BC-8927-8A7861761B91'
+//let hsheader = $.getdata('hsheader')
+let hsheader = '{"Content-Type":"application/x-www-form-urlencoded","x-Tt-Token":"00e1bb60ed6c0cbda3bbabdbb958ed0b3d05219a902b19362f971e3b91b9f00409a9b5fc657be352326ddbb0115f242dd11bee5602d2cc8e55fd762de18a05605dc63806a157f3142a11882bf3b19dbf36f2130a26d7db13ab72ee28ea56cd0648d08-1.0.1","x-tt-trace-id":"00-670cd03c0a10336ea89c75b17f0d0458-670cd03c0a10336e-01","Tt-Tnc-Etag":"050c4141-e9bd0e96-84660ace-76698c0b","Tt-Tnc-Canary":"1","sdk-version":"2","Tt-Config-Version":"050c4141-e9bd0e96-84660ace-76698c0b","X-Tyhon":"pAoD7O4sd/boPBXR7V8KyOJYAJGRDi/A9BEPtrM=","X-SS-DP":"1112","Host":"api3-normal-c-lf.huoshan.com","Accept-Encoding":"gzip, deflate","X-Gorgon":"8404a02810009d0bdf95ce9db56f1d82337161888cd10a69f054","Content-Length":"116","passport-sdk-version":"5.12.1","User-Agent":"Ã§ÂÂ«Ã¥Â±Â±Ã¥Â°ÂÃ¨Â§ÂÃÂ¢Â 10.8.5 rv:10080507 (iPhone; iOS 14.2; zh_CN) Cronet","X-SS-STUB":"93968F38F30E59DABCDDC3C03DC65CB2","Connection":"keep-alive","X-Khronos":"1612341628","Cookie":"odin_tt=a4b8e3192f96655b7c3dd2b9f8aa35cc9484aafe5ab152e3a601215e58c50153e48f16123db7e20b959a950ce5075b2711c6e93bf7077cbdfac43fb7500f8ee5"}'
+//let hsbody = $.getdata('hsbody')
+let hsbody = 'token=WJgWmxtLDqvbTvonqLQqeElPwljDTJ4Yob4PNWzXb9v7UYkQIO9GMMFHNlvPelsWXpTFH8Sr4y8bRYaF-cG6ahhaV0llUUXrYN3Z6BcuINg%3D'
 let tz = ($.getval('tz') || '1');//0关闭通知，1默认开启
 const invite=1;//新用户自动邀请，0关闭，1默认开启
 const logs =0;//0为关闭日志，1为开启
