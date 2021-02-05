@@ -26,9 +26,9 @@ jobs:
         run: |
       - name: "将 Secrets 里面配置的变量渲染成 config.json 文件"
         run: |
-         if [ $ HSBODY ]; then sed -i "/variables/a\       HSBODY: $ HSBODY" serverless.yml; fi;
-         if [ $ HSHEADER ]; then sed -i "/variables/a\       HSHEADER: $ HSHEADER" serverless.yml; fi;
-         if [ $ PLAYURL ]; then sed -i "/variables/a\       PLAYURL: $ PLAYURL" serverless.yml; fi;
+         if [ $ HSBODY ]; then sed -i "/variables/a\        HSBODY: $ HSBODY" serverless.yml; fi;
+         if [ $ HSHEADER ]; then sed -i "/variables/a\        HSHEADER: $ HSHEADER" serverless.yml; fi;
+         if [ $ PLAYURL ]; then sed -i "/variables/a\        PLAYURL: $ PLAYURL" serverless.yml; fi;
          if [ $ HSUR ]; then sed -i "/variables/a\       HSUR: $ HSUR" serverless.yml; fi;
          if [ $ PLAYHEADER ]; then sed -i "/variables/a\       PLAYHEADER: $ PLAYHEADER" serverless.yml; fi;
          if [ $ PLAYBODY ]; then sed -i "/variables/a\      PLAYBODY: $ PLAYBODY" serverless.yml; fi;
