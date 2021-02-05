@@ -22,9 +22,17 @@ jobs:
         run: |
           npm install
           sudo npm install serverless -g
+      - name: "将Secrets里面配置的变量添加到severless.yml里面作为环境变量"
+        run: |
       - name: "将 Secrets 里面配置的变量渲染成 config.json 文件"
         run: |
-          bash deploy.sh
+         if [ $ HSBODY ]; then sed -i "/variables/a\       HSBODY: $ HSBODY" serverless.yml; fi;
+         if [ $ HSHEADER ]; then sed -i "/variables/a\       HSHEADER: $ HSHEADER" serverless.yml; fi;
+         if [ $ PLAYURL ]; then sed -i "/variables/a\       PLAYURL: $ PLAYURL" serverless.yml; fi;
+         if [ $ HSUR ]; then sed -i "/variables/a\       HSUR: $ HSUR" serverless.yml; fi;
+         if [ $ PLAYHEADER ]; then sed -i "/variables/a\       PLAYHEADER: $ PLAYHEADER" serverless.yml; fi;
+         if [ $ PLAYBODY ]; then sed -i "/variables/a\      PLAYBODY: $ PLAYBODY" serverless.yml; fi;
+           cat serverless.yml
         env: #因为直接读取secrets里面的值很多字符不会自动转译，导致写入serverless.yml异常，所以设置到环境变量，在读取环境变量转译过的值
           HSBODY: ${{secrets.HSBODY}}
           HSHEADER: ${{secrets.HSHEADER}}
