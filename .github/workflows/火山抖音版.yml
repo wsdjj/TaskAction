@@ -35,6 +35,7 @@ jobs:
           npm install
       - name: '运行 【火山】'
         run: |
+          cd ~/TaskAction/workflow	
           node huoshan.js
         env:
           HSURL: ${{ secrets.HSURL }}
