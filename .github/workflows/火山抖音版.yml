@@ -34,12 +34,6 @@ jobs:
         run: |
           npm install
       - name: '运行 【火山】'
-        if: env.HSURL
-        if: env.HSHEADER
-        if: env.HSBODY
-        if: env.HSURL
-        if: env.HSURL
-        if: env.HSURL
         run: |
           cd ~/TaskAction/workflow	
           node huoshan.js
