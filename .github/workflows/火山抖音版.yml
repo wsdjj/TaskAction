@@ -16,6 +16,13 @@ jobs:
 
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    env:
+          HSURL: ${{ secrets.HSURL }}
+          HSHEADER: ${{ secrets.HSHEADER }}
+          HSBODY: ${{ secrets.HSBODY }}
+          PLAYURL: ${{ secrets.PLAYURL }}
+          PLAYHEADER: ${{ secrets.PLAYHEADER }}
+          PLAYBODY: ${{ secrets.PLAYBODY }}
     steps:
       - name: Checkout
         run: |	
