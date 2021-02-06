@@ -32,6 +32,8 @@ jobs:
           node-version: 12.x
       - name: npm install
         run: |
+          cd ~/TaskAction	        
+          git checkout master
           npm install
       - name: '运行 【火山】'
         run: |
