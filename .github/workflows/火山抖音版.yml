@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: hotsoon
+    types: huoshan
 jobs:
   build:
 
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Cache node_modules
-        uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
+        uses: actions/cache@v2 # 使用 GitHub 官方缓存 Action。
         env:
           cache-name: cache-node-modules
         with:
@@ -33,7 +33,6 @@ jobs:
       - name: npm install
         run: |
           cd ~/TaskAction	        
-          git checkout master
           npm install
       - name: '运行 【火山】'
         run: |
