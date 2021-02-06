@@ -16,15 +16,7 @@ jobs:
 
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-          HSURL: ${{ secrets.HSURL }}
-          HSHEADER: ${{ secrets.HSHEADER }}
-          HSBODY: ${{ secrets.HSBODY }}
-          PLAYURL: ${{ secrets.PLAYURL }}
-          PLAYHEADER: ${{ secrets.PLAYHEADER }}
-          PLAYBODY: ${{ secrets.PLAYBODY }}
     steps:
-     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -32,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Cache node_modules
-        uses: actions/cache@v2 # 使用 GitHub 官方缓存 Action。
+        uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
         env:
           cache-name: cache-node-modules
         with:
