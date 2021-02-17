@@ -25,6 +25,8 @@ jobs:
       - name: npm install
         run: |
           cd ~/TaskAction
+          git checkout master
+
           npm install
       - name: '运行 【芝嫲视频】'
         run: |
