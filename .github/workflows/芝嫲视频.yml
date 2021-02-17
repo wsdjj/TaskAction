@@ -24,7 +24,7 @@ jobs:
           node-version: 12.x
       - name: npm install
         run: |
-          cd ~/TaskAction
+          cd ~/TaskAction/workflow
           git checkout master
 
           npm install
