@@ -61,66 +61,73 @@ if (isGetCookie) {
    $.done()
 } 
 if ($.isNode()) {
-   if (process.env.HSURL && process.env.HSURL.indexOf('#') > -1) {
-   hsurl = process.env.HSURL.split('#');
-   console.log(`您选择的是用"#"隔开\n`)
-  }
-  else if (process.env.HSURL && process.env.HSURL.indexOf('\n') > -1) {
-   hsurl = process.env.HSURL.split('\n');
-   console.log(`您选择的是用换行隔开\n`)
-  } else {
-   hsurl = process.env.HSURL.split()
-  };
-  if (process.env.HSHEADER && process.env.HSHEADER.indexOf('#') > -1) {
-   hsheader = process.env.HSHEADER.split('#');
-   console.log(`您选择的是用"#"隔开\n`)
-  }
-  else if (process.env.HSHEADER && process.env.HSHEADER.indexOf('\n') > -1) {
-   hsheader = process.env.HSHEADER.split('\n');
-   console.log(`您选择的是用换行隔开\n`)
-  } else {
-   hsheader = process.env.HSHEADER.split()
-  };
-  if (process.env.HSBODY && process.env.HSBODY.indexOf('#') > -1) {
-   hsbody = process.env.HSBODY.split('#');
-   console.log(`您选择的是用"#"隔开\n`)
-  }
-  else if (process.env.HSBODY && process.env.HSBODY.indexOf('\n') > -1) {
-   hsbody = process.env.HSBODY.split('\n');
-   console.log(`您选择的是用换行隔开\n`)
-  } else {
-   hsbody = process.env.HSBODY.split()
-  };
-if (process.env.PLAYURL && process.env.PLAYURL.indexOf('#') > -1) {
-   playurl = process.env.PLAYURL.split('#');
-   console.log(`您选择的是用"#"隔开\n`)
-  }
-  else if (process.env.PLAYURL && process.env.PLAYURL.indexOf('\n') > -1) {
-   playurl = process.env.PLAYURL.split('\n');
-   console.log(`您选择的是用换行隔开\n`)
-  } else {
-   playurl = process.env.PLAYURL.split()
-  };
-  if (process.env.PLAYHEADER && process.env.PLAYHEADER.indexOf('#') > -1) {
-   playheader = process.env.PLAYHEADER.split('#');
-   console.log(`您选择的是用"#"隔开\n`)
-  }
-  else if (process.env.PLAYHEADER && process.env.PLAYHEADER.indexOf('\n') > -1) {
-   playheader = process.env.PLAYHEADER.split('\n');
-   console.log(`您选择的是用换行隔开\n`)
-  } else {
-   playheader = process.env.PLAYHEADER.split()
-  };
-  if (process.env.PLAYBODY && process.env.PLAYBODY.indexOf('#') > -1) {
-   playbody = process.env.PLAYBODY.split('#');
-   console.log(`您选择的是用"#"隔开\n`)
-  }
-  else if (process.env.PLAYBODY && process.env.PLAYBODY.indexOf('\n') > -1) {
-   playbody = process.env.PLAYBODY.split('\n');
-   console.log(`您选择的是用换行隔开\n`)
-  } else {
-   playbody = process.env.PLAYBODY.split()
-  };
+//    if (process.env.HSURL && process.env.HSURL.indexOf('#') > -1) {
+//    hsurl = process.env.HSURL.split('#');
+//    console.log(`您选择的是用"#"隔开\n`)
+//   }
+//   else if (process.env.HSURL && process.env.HSURL.indexOf('\n') > -1) {
+//    hsurl = process.env.HSURL.split('\n');
+//    console.log(`您选择的是用换行隔开\n`)
+//   } else {
+//    hsurl = process.env.HSURL.split()
+//   };
+//   if (process.env.HSHEADER && process.env.HSHEADER.indexOf('#') > -1) {
+//    hsheader = process.env.HSHEADER.split('#');
+//    console.log(`您选择的是用"#"隔开\n`)
+//   }
+//   else if (process.env.HSHEADER && process.env.HSHEADER.indexOf('\n') > -1) {
+//    hsheader = process.env.HSHEADER.split('\n');
+//    console.log(`您选择的是用换行隔开\n`)
+//   } else {
+//    hsheader = process.env.HSHEADER.split()
+//   };
+//   if (process.env.HSBODY && process.env.HSBODY.indexOf('#') > -1) {
+//    hsbody = process.env.HSBODY.split('#');
+//    console.log(`您选择的是用"#"隔开\n`)
+//   }
+//   else if (process.env.HSBODY && process.env.HSBODY.indexOf('\n') > -1) {
+//    hsbody = process.env.HSBODY.split('\n');
+//    console.log(`您选择的是用换行隔开\n`)
+//   } else {
+//    hsbody = process.env.HSBODY.split()
+//   };
+// if (process.env.PLAYURL && process.env.PLAYURL.indexOf('#') > -1) {
+//    playurl = process.env.PLAYURL.split('#');
+//    console.log(`您选择的是用"#"隔开\n`)
+//   }
+//   else if (process.env.PLAYURL && process.env.PLAYURL.indexOf('\n') > -1) {
+//    playurl = process.env.PLAYURL.split('\n');
+//    console.log(`您选择的是用换行隔开\n`)
+//   } else {
+//    playurl = process.env.PLAYURL.split()
+//   };
+//   if (process.env.PLAYHEADER && process.env.PLAYHEADER.indexOf('#') > -1) {
+//    playheader = process.env.PLAYHEADER.split('#');
+//    console.log(`您选择的是用"#"隔开\n`)
+//   }
+//   else if (process.env.PLAYHEADER && process.env.PLAYHEADER.indexOf('\n') > -1) {
+//    playheader = process.env.PLAYHEADER.split('\n');
+//    console.log(`您选择的是用换行隔开\n`)
+//   } else {
+//    playheader = process.env.PLAYHEADER.split()
+//   };
+//   if (process.env.PLAYBODY && process.env.PLAYBODY.indexOf('#') > -1) {
+//    playbody = process.env.PLAYBODY.split('#');
+//    console.log(`您选择的是用"#"隔开\n`)
+//   }
+//   else if (process.env.PLAYBODY && process.env.PLAYBODY.indexOf('\n') > -1) {
+//    playbody = process.env.PLAYBODY.split('\n');
+//    console.log(`您选择的是用换行隔开\n`)
+//   } else {
+//    playbody = process.env.PLAYBODY.split()
+//   };
+	
+    hsurlArr.push(https://api3-normal-c-lf.huoshan.com/hotsoon/item/reaction/_play/?js_sdk_version=1.93.0.1&client_request_id=3e46845162b25441870cacfbdd5a22fa&minor_control_status=0&ac=WIFI&tab_mode=3&)
+    hsheaderArr.push({"Tt-Tnc-Etag":"05d489ed-6919e878-a71862e2-e513583c","X-Gorgon":"840460251000c233de5548edde015b592c3d2d093c10ce42fa05","User-Agent":"Ã§Â•Â«Ã¥Â±Â±Ã¥Â°Â•Ã¨Â§Â•ÃÂ¢Â• 10.8.5 rv:10080507 (iPhone; iOS 14.2; zh_CN) Cronet","X-SS-STUB":"7AE54C15C671E90D10A03F6C7EC1177F","Host":"api3-normal-c-lf.huoshan.com","Cookie":"odin_tt=a4b8e3192f96655b7c3dd2b9f8aa35cc9484aafe5ab152e3a601215e58c50153e48f16123db7e20b959a950ce5075b2711c6e93bf7077cbdfac43fb7500f8ee5; install_id=3747555023001725; ttreq=1$ef111bc5e7aca7436adb1b721f32deb5617605fc","x-Tt-Token":"00e1bb60ed6c0cbda3bbabdbb958ed0b3d05219a902b19362f971e3b91b9f00409a9b5fc657be352326ddbb0115f242dd11bee5602d2cc8e55fd762de18a05605dc63806a157f3142a11882bf3b19dbf36f2130a26d7db13ab72ee28ea56cd0648d08-1.0.1","x-tt-trace-id":"00-6bd3f8580a10336ea89c8fa9bdbe0458-6bd3f8580a10336e-01","X-SS-DP":"1112","passport-sdk-version":"5.12.1","X-Khronos":"1612421789","Tt-Config-Version":"05d489ed-6919e878-a71862e2-e513583c","Content-Length":"150","Connection":"keep-alive","X-Tyhon":"yHG58YNcnsCqRM/ArULJ5Lh7qtuKBs7xm0OtlVE=","sdk-version":"2","Tt-Tnc-Canary":"1","x-common-params-v2":"settings_version=24&version_code=10.8.5&app_name=live_stream&vid=4D5A7E34-35BB-43C3-93E8-C52056142403&device_id=69582366876&channel=App%20Store&new_nav=0&multi_login=1&aid=1112&hs_location_permission=0&screen_width=750&openudid=b6d6f1b5f23025c04a5aef707f2338d2bc83f38a&live_sdk_version=10.8.5&os_api=18&update_version_code=10080507&mccmnc=&os_version=14.2&ws_status=CONNECTING&jssdk_version=1.93.0.1&client_version_code=100805&device_platform=iphone&iid=3747555023001725&device_type=iPhone8,1&idfa=46B3172D-55B8-48BC-8927-8A7861761B91&is_vcd=1","Content-Type":"application/x-www-form-urlencoded","Accept-Encoding":"gzip, deflate, br"})
+    hsbodyArr.push($.getdata('hsbody'))
+    playurlArr.push($.getdata('playurl'))
+    playheaderArr.push($.getdata('playheader'))
+    playbodyArr.push($.getdata('playbody'))
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
  } else {
