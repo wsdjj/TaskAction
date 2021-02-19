@@ -1,19 +1,21 @@
-/* ziye
-github地址 https://github.com/*ziye12
+/* ziye 
+github地址 https://github.com/ziye66666
 TG频道地址  https://t.me/ziyescript
 TG交流群   https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
-boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.boxjs.json
+boxjs链接  https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/ziye.boxjs.json
 转载请备注个名字，谢谢
 ⚠️芝嫲视频
 2.13 制作
 2.15 修复刷新问题,修复部分问题,点夺宝获取ck
+2.18 修复云函数报错
+2.19 调整刷新逻辑，解决无法收取晶石的问题
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
 点击 https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=612545154 下载APP
 或者商店搜索 芝嫲视频 邀请码612545154
 谢谢支持
 第一步 添加  hostname=api.sxsjyzm.com,
-第二步 添加body重写
+第二步 添加body重写 
 点击夺宝   获取body
 zhimabodyVal 👉ZM_zhimabody
 ⚠️主机名以及重写👇
@@ -21,13 +23,14 @@ zhimabodyVal 👉ZM_zhimabody
 hostname=api.sxsjyzm.com,
 ############## 圈x
 #芝嫲视频获取body
-https:\/\/api\.sxsjyzm\.com\/* url script-request-body https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js
+https:\/\/api\.sxsjyzm\.com\/* url script-request-body https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zhima.js   
 ############## loon
 #芝嫲视频获取body
-http-request https:\/\/api\.sxsjyzm\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
+http-request https:\/\/api\.sxsjyzm\.com\/* script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
 ############## surge
 #芝嫲视频获取body
-芝嫲视频获取body = type=http-request,pattern=https:\/\/api\.sxsjyzm\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js
+芝嫲视频获取body = type=http-request,pattern=https:\/\/api\.sxsjyzm\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zhima.js 
+ 
 */
 
 
@@ -39,7 +42,7 @@ const notify = $.isNode() ? require("./sendNotify") : ``;
 const COOKIE = $.isNode() ? require("./zhimaCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
-const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知
+const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 $.message = '', COOKIES_SPLIT = '', ddtime = '';
 const zhimabodyArr = [];
 let zhimabodyVal = ``;
@@ -64,35 +67,35 @@ if ($.isNode() && process.env.ZM_zhimabody) {
     } else {
         middlezhimabody = process.env.ZM_zhimabody.split();
     }
-
+    
 }
-if (COOKIE.zhimabodyArr) {
+if (COOKIE.zhimabodyVal) {
     ZM_COOKIES = {
         "zhimabodyVal": COOKIE.zhimabodyVal.split('\n'),
-
+    
 
 
     }
-    Length = ZM_COOKIES.zhimabodyArr.length;
+    Length = ZM_COOKIES.zhimabodyVal.length;
 }
-if (!COOKIE.zhimabodyArr) {
+if (!COOKIE.zhimabodyVal) {
     if ($.isNode()) {
         Object.keys(middlezhimabody).forEach((item) => {
             if (middlezhimabody[item]) {
                 zhimabodyArr.push(middlezhimabody[item]);
             }
         });
-
+        
     } else {
         zhimabodyArr.push($.getdata("zhimabody"));
-
+        
         // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
 
         let zhimaCount = ($.getval('zhimaCount') || '1') - 0;
         for (let i = 2; i <= zhimaCount; i++) {
             if ($.getdata(`zhimabody${i}`)) {
                 zhimabodyArr.push($.getdata(`zhimabody${i}`));
-
+                
 
 
             }
@@ -104,7 +107,7 @@ if (zhimabodyArr == '') {
         Length = 0
     } else Length = zhimabodyArr.length
 
-
+    
 }
 
 
@@ -227,11 +230,11 @@ async function all() {
 
         if (COOKIE.zhimabodyVal) {
             zhimabodyVal = ZM_COOKIES.zhimabodyVal[i];
-
+            
         }
         if (!COOKIE.zhimabodyVal) {
             zhimabodyVal = zhimabodyArr[i];
-
+            
         }
 
 
@@ -241,10 +244,11 @@ async function all() {
 
 console.log(`\n${O}\n========== 【${O}】 ==========\n`);
                         $.message += `\n${O}\n========== 【${O}】 ==========\n`;
-
+            
             await zhima(); //运行
+            await zhimasx(); //刷新
 
-
+ 
 
     }
 }
@@ -344,13 +348,13 @@ function zhima(timeout = 0) {
                     if (logs) $.log(`${O}, 芝嫲收晶石🚩: ${data}`);
 
 $.zhima= JSON.parse(data);
-
+await zhimasx()
                     if ($.zhima.code==200) {
 
                         console.log(`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`)
                         $.message +=`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`
 
-await zhimasx()
+
 await $.wait(11000)
 await zhima()
 
@@ -360,14 +364,14 @@ if ($.zhima.code==1001) {
 
                         console.log(`【晶石收取】:${$.zhima.mess},间隔11秒才能收取\n\n`)
                         $.message +=`【晶石收取】:${$.zhima.mess},间隔11秒才能收取\n\n`
-
+                   
                     }
 
 if ($.zhima.code==1002) {
 
                         console.log(`【晶石收取】:${$.zhima.mess},间隔3小时才能收取\n\n`)
                         $.message +=`【晶石收取】:${$.zhima.mess},间隔3小时才能收取\n\n`
-
+                      
                     }
 
 
@@ -375,7 +379,7 @@ if ($.zhima.code==156) {
 
                         console.log(`【晶石收取】:${$.zhima.mess}\n\n`)
                         $.message +=`【晶石收取】:${$.zhima.mess}\n\n`
-
+                        
                     }
 
 
