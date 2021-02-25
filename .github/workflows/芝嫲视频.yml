@@ -43,4 +43,4 @@ jobs:
         env:
           TZ: Asia/shanghai
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          
+          ZM_CASH: ${{ ZM_CASH }}
