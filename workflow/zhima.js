@@ -4,33 +4,63 @@ TG频道地址  https://t.me/ziyescript
 TG交流群   https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
 boxjs链接  https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/ziye.boxjs.json
 转载请备注个名字，谢谢
+
 ⚠️芝嫲视频
+
+
 2.13 制作
 2.15 修复刷新问题,修复部分问题,点夺宝获取ck
 2.24 增加自动提现，需要自行获取对应数值的body，并填写CASH变量
 2.24-2 修复刷新错误，务必更新
+2.25 修复版本更新带来的晶石收取问题
+
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
+
 点击 https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=612545154 下载APP
+
 或者商店搜索 芝嫲视频 邀请码612545154
+
 谢谢支持
+
+
 第一步 添加  hostname=api.sxsjyzm.com,
+
 第二步 添加body重写 
+
 点击夺宝   获取body
+
+
 zhimabodyVal 👉ZM_zhimabody
+
 CASH 👉ZM_CASH   可设置0.3 0.5 1 5 10 30 50 100 等等，设置完后自行获取对应body
+
+
+
 ⚠️主机名以及重写👇
+
 时间建议设置一小时一次   如 0 * * * *
+
 hostname=api.sxsjyzm.com,
+
+
+
 ############## 圈x
+
 #芝嫲视频获取body
 https:\/\/api\.sxsjyzm\.com\/* url script-request-body https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zhima.js   
+
 ############## loon
 #芝嫲视频获取body
 http-request https:\/\/api\.sxsjyzm\.com\/* script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
+
 ############## surge
+
 #芝嫲视频获取body
 芝嫲视频获取body = type=http-request,pattern=https:\/\/api\.sxsjyzm\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zhima.js 
+
+
+
  
 */
 
@@ -300,11 +330,11 @@ async function all() {
         if (!cookie_is_live) {
             continue;
         }
-        await zhima() //收取晶石
-        await zhimasx(); //刷新
+        await zhima() //收取晶石       
         if (nowTimes.getHours() === 17 && CASH >= 0.3) {
             await zhimatx(); //提现
         }
+        await zhimasx(); //刷新
     }
 }
 //通知
@@ -345,7 +375,7 @@ function zhimasx(timeout = 0) {
                     'Content-Type': `application/x-www-form-urlencoded`,
                     'Connection': `keep-alive`,
                     'Host': `api.sxsjyzm.com`,
-                    'User-Agent': `APP/4.7 CFNetwork/1206 Darwin/20.1.0`,
+                    'User-Agent': `APP/5.0 CFNetwork/1206 Darwin/20.1.0`,
                     'Accept-Language': `zh-cn`
                 },
                 body: zhimabodyVal,
@@ -389,7 +419,7 @@ function zhima(timeout = 0) {
 
 
             let url = {
-                url: `https://api.sxsjyzm.com/api2/loot/quickgetloot`,
+                url: `https://api.sxsjyzm.com/api2/loot/supquickgetloot`,
                 headers: {
                     'Accept': `*/*`,
                     'wToken': ``,
@@ -397,7 +427,7 @@ function zhima(timeout = 0) {
                     'Content-Type': `application/x-www-form-urlencoded`,
                     'Connection': `keep-alive`,
                     'Host': `api.sxsjyzm.com`,
-                    'User-Agent': `APP/4.7 CFNetwork/1206 Darwin/20.1.0`,
+                    'User-Agent': `APP/5.0 CFNetwork/1206 Darwin/20.1.0`,
                     'Accept-Language': `zh-cn`
                 },
                 body: zhimabodyVal,
@@ -411,21 +441,13 @@ function zhima(timeout = 0) {
 
                     if ($.zhima.code == 200) {
 
-                        console.log(`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n`)
-                        $.message += `【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n`
-                        await zhimasx(); //刷新
-                        await $.wait(11000)
-                        await zhima()
+                        console.log(`【晶石收取】:${time(Number(tts()))}领取晶石成功,冷却3小时\n`)
+                        $.message += `【晶石收取】:${time(Number(tts()))}领取晶石成功,冷却3小时\n`
+
 
                     }
 
 
-                    if ($.zhima.code == 1001) {
-
-                        console.log(`【晶石收取】:${$.zhima.mess},间隔11秒才能收取\n`)
-                        $.message += `【晶石收取】:${$.zhima.mess},间隔11秒才能收取\n`
-
-                    }
 
                     if ($.zhima.code == 1002) {
 
@@ -470,7 +492,7 @@ function zhimatx(timeout = 0) {
                     'Content-Type': `application/x-www-form-urlencoded`,
                     'Connection': `keep-alive`,
                     'Host': `api.sxsjyzm.com`,
-                    'User-Agent': `APP/4.7 CFNetwork/1206 Darwin/20.1.0`,
+                    'User-Agent': `APP/5.0 CFNetwork/1206 Darwin/20.1.0`,
                     'Accept-Language': `zh-cn`
                 },
                 body: zhimatxbodyVal,
