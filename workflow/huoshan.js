@@ -7,37 +7,39 @@ boxjs：https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/ZhiYi-N.
 谢谢
 作者：执意ZhiYi-N
 #看一个视频弹出金币获取ck
+
 [mitm]
-hostname = api3-normal-c-*.huoshan.com
+hostname = *.huoshan.com
 #圈x
 [rewrite local]
-https://api3-normal-c-\w+.huoshan.com/hotsoon/flame/task_done/? url script-request-body https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js
-https://api3-normal-c-\w+.huoshan.com/hotsoon/item/reaction/_play/? url script-request-body https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js
+/hotsoon/flame/task_done/? url script-request-body https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js
+
+/hotsoon/item/reaction/_play/? url script-request-body https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js
+
 #loon
-http-request https://api3-normal-c-\w+.huoshan.com/hotsoon/flame/task_done/? script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js, requires-body=true, timeout=10, tag=抖音火山版video
-http-request https://api3-normal-c-\w+.huoshan.com/hotsoon/item/reaction/_play/? script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js, requires-body=true, timeout=10, tag=抖音火山版play
+http-request /hotsoon/flame/task_done/? script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js, requires-body=true, timeout=10, tag=抖音火山版video
+
+http-request /hotsoon/item/reaction/_play/? script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js, requires-body=true, timeout=10, tag=抖音火山版play
+
 #surge
-抖音火山版video = type=http-request,pattern=^https://api3-normal-c-\w+.huoshan.com/hotsoon/flame/task_done/?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js,script-update-interval=0
-抖音火山版play = type=http-request,pattern=^https://api3-normal-c-\w+.huoshan.com/hotsoon/item/reaction/_play/?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js,script-update-interval=0
+抖音火山版video = type=http-request,pattern=/hotsoon/flame/task_done/?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js,script-update-interval=0
+
+抖音火山版play = type=http-request,pattern=/hotsoon/item/reaction/_play/?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/huoshan.js,script-update-interval=0
 */
+
+
 const zhiyi = '抖音火山版'
 const $ = Env(zhiyi)
 const notify = $.isNode() ?require('./sendNotify') : '';
 let status;
 status = (status = ($.getval("hsstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
 const hsheaderArr = [],hsbodyArr = [],hsurlArr = [],playurlArr = [],playheaderArr = [],playbodyArr = []
-//let playurl = $.getdata('playurl')
-let playurl = 'https://api3-normal-c-lf.huoshan.com/hotsoon/item/reaction/_play/?js_sdk_version=1.93.0.1&client_request_id=3e46845162b25441870cacfbdd5a22fa&minor_control_status=0&ac=WIFI&tab_mode=3&'
-//let playheader = $.getdata('playheader')
-let playheader = '{"Tt-Tnc-Etag":"05d489ed-6919e878-a71862e2-e513583c","X-Gorgon":"840460251000c233de5548edde015b592c3d2d093c10ce42fa05","User-Agent":"Ã§ÂÂ«Ã¥Â±Â±Ã¥Â°ÂÃ¨Â§ÂÃÂ¢Â 10.8.5 rv:10080507 (iPhone; iOS 14.2; zh_CN) Cronet","X-SS-STUB":"7AE54C15C671E90D10A03F6C7EC1177F","Host":"api3-normal-c-lf.huoshan.com","Cookie":"odin_tt=a4b8e3192f96655b7c3dd2b9f8aa35cc9484aafe5ab152e3a601215e58c50153e48f16123db7e20b959a950ce5075b2711c6e93bf7077cbdfac43fb7500f8ee5; install_id=3747555023001725; ttreq=1$ef111bc5e7aca7436adb1b721f32deb5617605fc","x-Tt-Token":"00e1bb60ed6c0cbda3bbabdbb958ed0b3d05219a902b19362f971e3b91b9f00409a9b5fc657be352326ddbb0115f242dd11bee5602d2cc8e55fd762de18a05605dc63806a157f3142a11882bf3b19dbf36f2130a26d7db13ab72ee28ea56cd0648d08-1.0.1","x-tt-trace-id":"00-6bd3f8580a10336ea89c8fa9bdbe0458-6bd3f8580a10336e-01","X-SS-DP":"1112","passport-sdk-version":"5.12.1","X-Khronos":"1612421789","Tt-Config-Version":"05d489ed-6919e878-a71862e2-e513583c","Content-Length":"150","Connection":"keep-alive","X-Tyhon":"yHG58YNcnsCqRM/ArULJ5Lh7qtuKBs7xm0OtlVE=","sdk-version":"2","Tt-Tnc-Canary":"1","x-common-params-v2":"settings_version=24&version_code=10.8.5&app_name=live_stream&vid=4D5A7E34-35BB-43C3-93E8-C52056142403&device_id=69582366876&channel=App%20Store&new_nav=0&multi_login=1&aid=1112&hs_location_permission=0&screen_width=750&openudid=b6d6f1b5f23025c04a5aef707f2338d2bc83f38a&live_sdk_version=10.8.5&os_api=18&update_version_code=10080507&mccmnc=&os_version=14.2&ws_status=CONNECTING&jssdk_version=1.93.0.1&client_version_code=100805&device_platform=iphone&iid=3747555023001725&device_type=iPhone8,1&idfa=46B3172D-55B8-48BC-8927-8A7861761B91&is_vcd=1","Content-Type":"application/x-www-form-urlencoded","Accept-Encoding":"gzip, deflate, br"}'
-//let playbody = $.getdata('playbody')
-let playbody = 'action_backtrace=recommend&channel_id=10020&is_city_near_by=0&is_dy_domain=0&is_follower=0&is_following=0&item_id=6925236017083534595&source=recommend'
-//let hsurl = $.getdata('hsurl')
-let hsurl = 'settings_version=24&version_code=10.8.5&js_sdk_version=1.93.0.1&app_name=live_stream&vid=4D5A7E34-35BB-43C3-93E8-C52056142403&device_id=69582366876&new_nav=0&channel=App%20Store&multi_login=1&aid=1112&hs_location_permission=0&screen_width=750&client_request_id=29a35460ea108317f02dfa820e878c3d&openudid=b6d6f1b5f23025c04a5aef707f2338d2bc83f38a&live_sdk_version=10.8.5&minor_control_status=0&os_api=18&update_version_code=10080507&ac=WIFI&mccmnc=&os_version=14.2&ws_status=CONNECTED&jssdk_version=1.93.0.1&client_version_code=100805&device_platform=iphone&tab_mode=3&iid=3747555023001725&device_type=iPhone8,1&is_vcd=1&idfa=46B3172D-55B8-48BC-8927-8A7861761B91'
-//let hsheader = $.getdata('hsheader')
-let hsheader = '{"Content-Type":"application/x-www-form-urlencoded","x-Tt-Token":"00e1bb60ed6c0cbda3bbabdbb958ed0b3d05219a902b19362f971e3b91b9f00409a9b5fc657be352326ddbb0115f242dd11bee5602d2cc8e55fd762de18a05605dc63806a157f3142a11882bf3b19dbf36f2130a26d7db13ab72ee28ea56cd0648d08-1.0.1","x-tt-trace-id":"00-6bfec4e60a10336ea89cd370e4000458-6bfec4e60a10336e-01","Tt-Tnc-Etag":"05d489ed-6919e878-a71862e2-e513583c","Tt-Tnc-Canary":"1","sdk-version":"2","Tt-Config-Version":"05d489ed-6919e878-a71862e2-e513583c","X-Tyhon":"jiBdAC1uejEEdisxA3AtFRZJTiokNCoANXFJ4Vo=","X-SS-DP":"1112","Host":"api3-normal-c-lf.huoshan.com","Accept-Encoding":"gzip, deflate, br","X-Gorgon":"8404c0da1000087c055fa7960f86705be3e07e1eb254eb484735","Content-Length":"116","passport-sdk-version":"5.12.1","User-Agent":"Ã§ÂÂ«Ã¥Â±Â±Ã¥Â°ÂÃ¨Â§ÂÃÂ¢Â 10.8.5 rv:10080507 (iPhone; iOS 14.2; zh_CN) Cronet","X-SS-STUB":"E4FE04F2A4BBDB76F96B6A7295BA956D","Connection":"keep-alive","X-Khronos":"1612424594","Cookie":"odin_tt=a4b8e3192f96655b7c3dd2b9f8aa35cc9484aafe5ab152e3a601215e58c50153e48f16123db7e20b959a950ce5075b2711c6e93bf7077cbdfac43fb7500f8ee5; install_id=3747555023001725; ttreq=1$ef111bc5e7aca7436adb1b721f32deb5617605fc"}'
-//let hsbody = $.getdata('hsbody')
-let hsbody = 'token=WJgWmxtLDqvbTvonqLQqeElPwljDTJ4YobkPNGzXb9v6WoUcK-5CPsVEMV7Ee1AVXpTFH8Sr4y8bRYaF-cG6anwgNxah1RwzID_jaevDKQY%3D'
+let playurl = $.getdata('playurl')
+let playheader = $.getdata('playheader')
+let playbody = $.getdata('playbody')
+let hsurl = $.getdata('hsurl')
+let hsheader = $.getdata('hsheader')
+let hsbody = $.getdata('hsbody')
 let tz = ($.getval('tz') || '1');//0关闭通知，1默认开启
 const invite=1;//新用户自动邀请，0关闭，1默认开启
 const logs =0;//0为关闭日志，1为开启
@@ -47,6 +49,8 @@ let item_id,item_id_inv,adtonen,signtoken,double_token;
 let sum = 0;
 let no = 0;
 let add_lottery_count = 0;
+
+
 if ($.isNode()) {
    hour = new Date( new Date().getTime() + 8 * 60 * 60 * 1000 ).getHours();
    minute = new Date( new Date().getTime() + 8 * 60 * 60 * 1000 ).getMinutes();
@@ -147,7 +151,7 @@ playheaderArr.push($.getdata(`playheader${i}`))
     playbodyArr.push($.getdata(`playbody${i}`))
   }
 }
-!(async () => {
+     !(async () => {
 if (!hsheaderArr[0] && !hsbodyArr[0] && !hsurlArr[0]) {
     $.msg($.name, '【提示】请先获取抖音火山版一cookie')
     return;
@@ -166,7 +170,7 @@ if (!hsheaderArr[0] && !hsbodyArr[0] && !hsurlArr[0]) {
       $.index = i + 1;
       console.log(`\n开始【抖音火山版${$.index}】`)
       //await ck()
-      await app_alert_check()
+      //await app_alert_check()
       await device_register()
       await userinfo()
       await gettoken()
@@ -229,7 +233,7 @@ for(let i = 0;i <= 4;i++){
    item_id_inv = item_id[i]
    $.log(item_id_inv)
    let x = Math.random()
-   let delay = x > 0.5? x*60000 : (x+0.5)*30000
+   let delay = x > 0.5? x*30000 : (x+0.5)*15000
    console.log('⏰本次延迟'+Math.round(delay/1000)+'秒')
    await sleep(delay)
    await play_video()
@@ -479,6 +483,9 @@ let newplaybody = playbody.replace(/\d{19}/,`${item_id_inv}`)
         //message = `🎈视频播放成功${no}次，获取奖励${no}次\n`
         }else{
         console.log('视频播放失败'+result.extra.details+'\n')
+        no = no + 1;
+        await video_rewards()
+        
 }
         }catch(e) {
           $.logErr(e, response);
@@ -493,9 +500,10 @@ let newplaybody = playbody.replace(/\d{19}/,`${item_id_inv}`)
 async function video_rewards(){
 	let new_time = Math.round(new Date().getTime()/1000).toString();
 	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+        let url = hsurl.replace(/device_platform=\w+/,'device_platform=android')
  return new Promise((resolve) => {
     let video_rewards_url = {
-   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${hsurl}`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${url}`,
     	headers: JSON.parse(hsheader),
     	body: hsbody
     	}
