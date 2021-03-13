@@ -35,9 +35,9 @@ jobs:
           cd ~/TaskAction
           git checkout master
           npm install
-      - name: '运行 【步步宝】'
+      - name: '运行 【步步宝2】'
         run: |
-          cd ~/TaskAction
+          cd ~/TaskAction/workflow
           node bububao.js
         env:
           TZ: Asia/shanghai
