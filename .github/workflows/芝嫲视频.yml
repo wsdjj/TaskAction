@@ -44,3 +44,4 @@ jobs:
           TZ: Asia/shanghai
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           ZM_CASH: ${{ secrets.ZM_CASH }}
+          zhimatxbody: ${{ secrets.zhimatxbody }}
