@@ -35,7 +35,7 @@ jobs:
       - name: '运行 【番茄小说】'
         run: |
           cd ~/TaskAction/workflow	
-          node fqxs2.js
+          node fqxs2.js 
         env:
           TZ: Asia/shanghai
   
