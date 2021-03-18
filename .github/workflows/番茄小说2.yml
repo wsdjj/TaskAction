@@ -38,8 +38,7 @@ jobs:
           node fqxs2.js
         env:
           TZ: Asia/shanghai
-          FQXSURL: ${{ secrets.FQXSURL }}
-          FQXS: ${{ secrets.FQXS }}
+  
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
