@@ -24,6 +24,7 @@ http-request luckycat/novel/v1/task/sign_in/* script-path=https://raw.githubuser
 
 */
 
+
 const zhiyi = '🍅番茄小说'
 const $ = Env(zhiyi)
 const notify = $.isNode() ?require('./sendNotify') : '';
