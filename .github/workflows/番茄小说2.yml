@@ -32,7 +32,7 @@ jobs:
            cd ~/TaskAction	        
            git checkout master	   
            npm install
-      - name: '运行 【番茄小说】'
+      - name: '运行 【番茄小说2】'
         run: |
           cd ~/TaskAction/workflow	
           node fqxs2.js 
